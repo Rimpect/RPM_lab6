@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">laba6</string>
+    <string name="channel_name">Default Channel</string>
+    <string name="channel_description">Описание канала уведомлений по умолчанию</string>
 </resources>
