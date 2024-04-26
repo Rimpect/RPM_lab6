@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
@@ -126,10 +127,20 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void sendNotification() {
+        // Получаем введенный пользователем текст из EditText
+        EditText notificationTextEdit = findViewById(R.id.notificationText);
+        String notificationText = notificationTextEdit.getText().toString();
+
+        // Проверяем, что текст не пустой
+        if (notificationText.isEmpty()) {
+            Toast.makeText(this, "Введите текст уведомления", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle("Уведомление")
-                .setContentText("Это уведомление появилось после нажатия кнопки")
+                .setContentText(notificationText) // Используем введенный текст
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
         NotificationManager notificationManager = getSystemService(NotificationManager.class);
